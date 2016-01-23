@@ -1,0 +1,20 @@
+//O Banco de dados segue os seguintes padrões:
+
+//· 4 índices para pesquisa : Língua, Assunto, Tipo e Dificuldade, onde o índice
+//assunto é dinâmico e os demais são estáticos;
+//· Os indentificadores serão delimitados por /' e '/, facilitando a interpretação do programa;
+//· Cada questão terá um número identificador, que passará a ser seu respectivo nome;
+//· Cada questão será um arquivo .txt separado;
+//· A identificação da questão virá em seu cabeçalho;
+
+//Cada elemento do banco terá a seguinte forma:
+
+//questão 1234.txt
+
+Inglês
+To be
+Discursiva
+Fácil
+
+Husagnoajwhnfoianfa`0ing0mids isngoairnwbgobnsod eribngofiadbfoqia ibgfoaibg
+aohgnofsidnfopwienbvpcsiond gpv?
