@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
  * @author Linco
  */
 public class Save {
-    public static int salvar(String Assunto,String Lingua,String Tipo,String Dificuldade,String Questao) throws IOException{
+    public static int salvar(String Assunto,String Materia,String Tipo,String Dificuldade,String Questao) throws IOException{
         try {
             int i=1;
             try {
@@ -56,7 +56,7 @@ public class Save {
                 }
                 String linhas[] = Questao.split(System.lineSeparator());
                 try (PrintWriter arqQuestao = new PrintWriter(new FileWriter("Questoes/"+i+".txt", true))) {
-                    arqQuestao.println(Lingua);
+                    arqQuestao.println(Materia);
                     arqQuestao.println(Assunto);
                     arqQuestao.println(Tipo);
                     arqQuestao.println(Dificuldade);
@@ -67,7 +67,7 @@ public class Save {
                     arqQuestao.close();
                 }
             }
-            Banco.Lingua.adicionar(Lingua, i+".txt");
+            Banco.Materia.adicionar(Materia, i+".txt");
             Banco.Assunto.adicionar(Assunto, i+".txt");
             Banco.Tipo.adicionar(Tipo, i+".txt");
             Banco.Dificuldade.adicionar(Dificuldade, i+".txt");

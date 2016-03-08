@@ -22,7 +22,7 @@ public class Editar {
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-    public static int edit(String Assunto,String Lingua,String Tipo,String Dificuldade,String Questao,String nome) throws IOException{
+    public static int edit(String Assunto,String Materia,String Tipo,String Dificuldade,String Questao,String nome) throws IOException{
         try {
                 Banco.BDgen.remover(nome);
                 File arqQuestao = new File("Questoes/"+nome);
@@ -38,7 +38,7 @@ public class Editar {
             }
             String linhas[] = Questao.split(System.lineSeparator());
             try (PrintWriter arqQuestao = new PrintWriter(new FileWriter("Questoes/"+nome, true))) {
-                arqQuestao.println(Lingua);
+                arqQuestao.println(Materia);
                 arqQuestao.println(Assunto);
                 arqQuestao.println(Tipo);
                 arqQuestao.println(Dificuldade);
@@ -89,7 +89,7 @@ public class Editar {
                 JOptionPane.showMessageDialog(null, "Erro nas permissões da pasta do programa!(Erro 33)");
                 return -1;
             }
-            Banco.Lingua.adicionar(Lingua, nome);
+            Banco.Materia.adicionar(Materia, nome);
             Banco.Assunto.adicionar(Assunto, nome);
             Banco.Tipo.adicionar(Tipo, nome);
             Banco.Dificuldade.adicionar(Dificuldade, nome);

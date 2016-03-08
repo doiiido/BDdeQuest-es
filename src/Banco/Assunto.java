@@ -83,10 +83,10 @@ public class Assunto extends BDgen {
                 fileIn.close();
                 buff.delete();
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(Lingua.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Materia.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "Erro nas permissões da pasta do programa!(Erro 27)");
             } catch (IOException ex) {
-                Logger.getLogger(Lingua.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Materia.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "Erro nas permissões da pasta do programa!(Erro 28)");
             }
         return 0;
@@ -100,7 +100,7 @@ public class Assunto extends BDgen {
                 buff.createNewFile();
             }
             Scanner fileIn = new Scanner(file);
-            String lingua = fileIn.nextLine();
+            String materia = fileIn.nextLine();
             String assunto = fileIn.nextLine();
             String tipo = fileIn.nextLine();
             String dificuldade = fileIn.nextLine();
@@ -132,10 +132,10 @@ public class Assunto extends BDgen {
                removerassunto(assunto);
             }
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(Lingua.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Materia.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Erro nas permissões da pasta do programa!(Erro29)");
         } catch (IOException ex) {
-            Logger.getLogger(Lingua.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Materia.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Erro nas permissões da pasta do programa!(Erro 30)");
         }
         return 0;

@@ -43,7 +43,7 @@ static String banco;
         return 0;
     }
     public static int remover (String nome){
-        Lingua.removerquestao(nome);
+        Materia.removerquestao(nome);
         Assunto.removerquestao(nome);
         Tipo.removertipo(nome);
         Dificuldade.removerdificuldade(nome);

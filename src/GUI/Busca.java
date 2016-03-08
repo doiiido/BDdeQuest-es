@@ -64,7 +64,7 @@ public class Busca extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Língua:");
+        jLabel1.setText("Matéria:");
 
         jLabel2.setText("Assunto:");
 
@@ -216,7 +216,7 @@ public class Busca extends javax.swing.JFrame {
     /**Código do botão Ok*/
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         String Assunto;
-        String Lingua;
+        String Materia;
         if(valida()){
             if(!jList1.isSelectionEmpty()){
                 Assunto =  jList1.getSelectedValue();
@@ -224,9 +224,9 @@ public class Busca extends javax.swing.JFrame {
                 Assunto = "";
             }
             if(!jList2.isSelectionEmpty()){
-                Lingua =  jList2.getSelectedValue();
+                Materia =  jList2.getSelectedValue();
             }else{
-                Lingua = "";
+                Materia = "";
             }
             String Tipo = main.GroupButtonUtils.getSelectedButtonText(buttonGroup2);
             if (Tipo==null){
@@ -238,7 +238,7 @@ public class Busca extends javax.swing.JFrame {
             }
             int numero = Integer.parseInt(jTextField2.getText());
             if(numero>0){
-                String Resultado = Banco.Busca.buscar(Assunto, Lingua, Tipo, Dificuldade, numero);
+                String Resultado = Banco.Busca.buscar(Assunto, Materia, Tipo, Dificuldade, numero);
                 if(Resultado==null)
                     return;
                 if(encontradas!=numero){
@@ -317,12 +317,12 @@ public class Busca extends javax.swing.JFrame {
     }
     
     /**
-     * Funçao que inicializa a lista de linguas ja existentes
+     * Funçao que inicializa a lista de materias ja existentes
      */
-    public void setlingua(){
+    public void setmateria(){
         DefaultListModel list = new DefaultListModel();
         try{
-            File arq = new File("Indices/Línguas.txt");
+            File arq = new File("Indices/Matérias.txt");
             if (!arq.exists()){
                 JOptionPane.showMessageDialog(null, "Nenhum arquivo no banco de dados ou erro desconhecido com as permissões da pasta do programa!(Erro 11)");
                 return;
@@ -345,7 +345,7 @@ public class Busca extends javax.swing.JFrame {
     /**verifica o que não existe no banco e remove da interface*/
     public void verificabanco(){
         setassunto();
-        setlingua();
+        setmateria();
         File arq = new File("Indices/Objetiva.txt");
         if(!arq.exists())
             jRadioButton3.setVisible(false);

@@ -34,16 +34,16 @@ public class Busca {
         return resultado;
     }
     
-    public static String buscar(String Assunto,String Lingua,String Tipo,String Dificuldade,int numero){
+    public static String buscar(String Assunto,String Materia,String Tipo,String Dificuldade,int numero){
     List<String> listAssunto = new ArrayList<>();
-    List<String> listLingua = new ArrayList<>();
+    List<String> listMateria = new ArrayList<>();
     List<String> listTipo = new ArrayList<>();
     List<String> listDificuldade = new ArrayList<>();
     List<String> Questoes = new ArrayList<>();
     String listquestoes = new String();
     int i=0,j=0;
     try{
-    File arqAssunto=null, arqLingua=null, arqTipo=null, arqDificuldade=null;
+    File arqAssunto=null, arqMateria=null, arqTipo=null, arqDificuldade=null;
             if(!Assunto.isEmpty()){
                 arqAssunto = new File("Indices/Assunto/"+Assunto+".txt");
                 if(!arqAssunto.exists()){
@@ -54,9 +54,9 @@ public class Busca {
                 }
                 j+=1;
             }
-            if(!Lingua.isEmpty()){
-                arqLingua = new File("Indices/Língua/"+Lingua+".txt");
-                if(!arqLingua.exists()){
+            if(!Materia.isEmpty()){
+                arqMateria = new File("Indices/Matéria/"+Materia+".txt");
+                if(!arqMateria.exists()){
                     JOptionPane.showMessageDialog(null, "Erro no Banco de Dados, por favor revalide o banco (no menu ferramentas, na tela inicial do programa)");
                     GUI.Busca.pag2.dispose();
                     GUI.Pg1.pag1.setVisible(true);
@@ -94,26 +94,26 @@ public class Busca {
                     Questoes = listAssunto;
                     fileIn.close();
                     break;
-                case 2://lingua
-                    fileIn = new Scanner(arqLingua);
+                case 2://materia
+                    fileIn = new Scanner(arqMateria);
                     while (fileIn.hasNextLine()){
-                        listLingua.add(fileIn.nextLine());
+                        listMateria.add(fileIn.nextLine());
                     }
-                    Questoes = listLingua;
+                    Questoes = listMateria;
                     fileIn.close();
                     break;
-                case 3://assunto e lingua
+                case 3://assunto e materia
                     fileIn = new Scanner(arqAssunto);
                     while (fileIn.hasNextLine()){
                         listAssunto.add(fileIn.nextLine());
                     }
                     fileIn.close();
-                    fileIn = new Scanner(arqLingua);
+                    fileIn = new Scanner(arqMateria);
                     while (fileIn.hasNextLine()){
-                        listLingua.add(fileIn.nextLine());
+                        listMateria.add(fileIn.nextLine());
                     }
                     fileIn.close();
-                    Questoes = Compara (listLingua, listAssunto);
+                    Questoes = Compara (listMateria, listAssunto);
                     break;
                 case 4://tipo
                     fileIn = new Scanner(arqTipo);
@@ -136,20 +136,20 @@ public class Busca {
                     Questoes = Compara(listAssunto, listTipo);
                     fileIn.close();
                     break;
-                case 6://tipo e lingua
+                case 6://tipo e materia
                     fileIn = new Scanner(arqTipo);
                     while (fileIn.hasNextLine()){
                         listTipo.add(fileIn.nextLine());
                     }
                     fileIn.close();
-                    fileIn = new Scanner(arqLingua);
+                    fileIn = new Scanner(arqMateria);
                     while (fileIn.hasNextLine()){
-                        listLingua.add(fileIn.nextLine());
+                        listMateria.add(fileIn.nextLine());
                     }
-                    Questoes = Compara (listLingua, listTipo);
+                    Questoes = Compara (listMateria, listTipo);
                     fileIn.close();
                     break;
-                case 7://tipo, assunto e lingua
+                case 7://tipo, assunto e materia
                     fileIn = new Scanner(arqTipo);
                     while (fileIn.hasNextLine()){
                         listTipo.add(fileIn.nextLine());
@@ -160,11 +160,11 @@ public class Busca {
                         listAssunto.add(fileIn.nextLine());
                     }
                     fileIn.close();
-                    fileIn = new Scanner(arqLingua);
+                    fileIn = new Scanner(arqMateria);
                     while (fileIn.hasNextLine()){
-                        listLingua.add(fileIn.nextLine());
+                        listMateria.add(fileIn.nextLine());
                     }
-                    Questoes = Compara (listLingua, listTipo);
+                    Questoes = Compara (listMateria, listTipo);
                     Questoes = Compara (listAssunto, Questoes);
                     fileIn.close();
                     break;
@@ -189,20 +189,20 @@ public class Busca {
                     Questoes = Compara(listAssunto, listDificuldade);
                     fileIn.close();
                     break;
-                case 10://dificuldade lingua
+                case 10://dificuldade materia
                     fileIn = new Scanner(arqDificuldade);
                     while (fileIn.hasNextLine()){
                         listDificuldade.add(fileIn.nextLine());
                     }
                     fileIn.close();
-                    fileIn = new Scanner(arqLingua);
+                    fileIn = new Scanner(arqMateria);
                     while (fileIn.hasNextLine()){
-                        listLingua.add(fileIn.nextLine());
+                        listMateria.add(fileIn.nextLine());
                     }
-                    Questoes = Compara (listLingua, listDificuldade);
+                    Questoes = Compara (listMateria, listDificuldade);
                     fileIn.close();
                     break;
-                case 11://dificuldade, assunto e lingua
+                case 11://dificuldade, assunto e materia
                     fileIn = new Scanner(arqDificuldade);
                     while (fileIn.hasNextLine()){
                         listDificuldade.add(fileIn.nextLine());
@@ -212,11 +212,11 @@ public class Busca {
                         listAssunto.add(fileIn.nextLine());
                     }
                     fileIn.close();
-                    fileIn = new Scanner(arqLingua);
+                    fileIn = new Scanner(arqMateria);
                     while (fileIn.hasNextLine()){
-                        listLingua.add(fileIn.nextLine());
+                        listMateria.add(fileIn.nextLine());
                     }
-                    Questoes = Compara (listLingua, listTipo);
+                    Questoes = Compara (listMateria, listTipo);
                     Questoes = Compara (listAssunto, Questoes);
                     Questoes = Compara (listDificuldade, Questoes);
                     fileIn.close();
@@ -253,7 +253,7 @@ public class Busca {
                     Questoes = Compara (Questoes, listTipo);
                     fileIn.close();
                     break;
-                case 14://dificuldade, tipo e lingua
+                case 14://dificuldade, tipo e materia
                     fileIn = new Scanner(arqDificuldade);
                     while (fileIn.hasNextLine()){
                         listDificuldade.add(fileIn.nextLine());
@@ -264,15 +264,15 @@ public class Busca {
                         listTipo.add(fileIn.nextLine());
                     }
                     fileIn.close();
-                    fileIn = new Scanner(arqLingua);
+                    fileIn = new Scanner(arqMateria);
                     while (fileIn.hasNextLine()){
-                        listLingua.add(fileIn.nextLine());
+                        listMateria.add(fileIn.nextLine());
                     }
-                    Questoes = Compara (listLingua, listTipo);
+                    Questoes = Compara (listMateria, listTipo);
                     Questoes = Compara (listDificuldade, Questoes);
                     fileIn.close();
                     break;
-                case 15://dificudade, tipo ,assunto e lingua
+                case 15://dificudade, tipo ,assunto e materia
                     fileIn = new Scanner(arqDificuldade);
                     while (fileIn.hasNextLine()){
                         listDificuldade.add(fileIn.nextLine());
@@ -288,13 +288,13 @@ public class Busca {
                         listAssunto.add(fileIn.nextLine());
                     }
                     fileIn.close();
-                    fileIn = new Scanner(arqLingua);
+                    fileIn = new Scanner(arqMateria);
                     while (fileIn.hasNextLine()){
-                        listLingua.add(fileIn.nextLine());
+                        listMateria.add(fileIn.nextLine());
                     }
                     Questoes = Compara(listAssunto, listDificuldade);
                     Questoes = Compara (Questoes, listTipo);
-                    Questoes = Compara (listLingua, Questoes);
+                    Questoes = Compara (listMateria, Questoes);
                     fileIn.close();
                     break;
         }

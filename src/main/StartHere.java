@@ -10,7 +10,7 @@ import java.io.File;
 /**
  * @author Lincoln
  */
-public class MOM {
+public class StartHere {
 
     /**
      * Inicializando as pastas necessárias
@@ -23,7 +23,7 @@ public class MOM {
         file = new File("Indices/Assunto/");
         if(!file.exists())
             file.mkdirs();
-        file = new File("Indices/Língua/");
+        file = new File("Indices/Matéria/");
         if(!file.exists())
             file.mkdir();
         file = new File("Buscas/");

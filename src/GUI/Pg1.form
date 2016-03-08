@@ -292,7 +292,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="L&#xed;ngua:"/>
+        <Property name="text" type="java.lang.String" value="Mat&#xe9;ria:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="jRadioButton6">

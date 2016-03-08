@@ -41,7 +41,7 @@ public class Dificuldade extends BDgen {
                     buff.createNewFile();
                 }
                 Scanner fileIn = new Scanner(file);
-                String lingua = fileIn.nextLine();
+                String materia = fileIn.nextLine();
                 String assunto = fileIn.nextLine();
                 String tipo = fileIn.nextLine();
                 String dificuldade = fileIn.nextLine();
@@ -69,18 +69,18 @@ public class Dificuldade extends BDgen {
                 fileIn.close();
                 buff.delete();
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(Lingua.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Materia.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "Erro nas permissões da pasta do programa!(Erro 20)");
             } catch (IOException ex) {
-                Logger.getLogger(Lingua.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Materia.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null, "Erro nas permissões da pasta do programa!(Erro 21)");
             }
         return 0;
     }
-    public static int editar (String Lingua,String nome){
+    public static int editar (String Materia,String nome){
         return 0;
     }
-    public static String [] buscarand (String Lingua, int num){
+    public static String [] buscarand (String Materia, int num){
         String [] nomes = null;
         return nomes;
     }

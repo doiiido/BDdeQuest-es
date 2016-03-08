@@ -33,7 +33,7 @@ public class Pg1 extends javax.swing.JFrame {
     }
     
     /**Flags para controle das interaçoes entre funções*/
-    Boolean Edit = false, assuntosetted=false, linguasetted=false;
+    Boolean Edit = false, assuntosetted=false, materiasetted=false;
     String nome;
     public static Pg1 pag1;
     
@@ -132,7 +132,7 @@ public class Pg1 extends javax.swing.JFrame {
 
         jLabel1.setText("Dificuldade:");
 
-        jLabel2.setText("Língua:");
+        jLabel2.setText("Matéria:");
 
         buttonGroup2.add(jRadioButton6);
         jRadioButton6.setText("Objetiva");
@@ -284,8 +284,8 @@ public class Pg1 extends javax.swing.JFrame {
         );
 
         jTextField1.getAccessibleContext().setAccessibleName("Assunto");
-        jTextField2.getAccessibleContext().setAccessibleName("Língua");
-        jTextField2.getAccessibleContext().setAccessibleDescription("Língua");
+        jTextField2.getAccessibleContext().setAccessibleName("Matéria");
+        jTextField2.getAccessibleContext().setAccessibleDescription("Matéria");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -305,11 +305,18 @@ public class Pg1 extends javax.swing.JFrame {
             File arq = new File("Indices/Assuntos.txt");
             Scanner fileIn;
             fileIn = new Scanner(arq);
+            String assunto = jTextField1.getText();
             while (fileIn.hasNextLine()){
                 Assunto=fileIn.nextLine();
                 JMenuItem item = new JMenuItem(Assunto);
                 item.addActionListener(menuListener);
-                jPopupMenu1.add(item);
+                if(assunto.isEmpty()){
+                    jPopupMenu1.add(item);
+                }else{
+                    if(Assunto.contains(assunto)){
+                        jPopupMenu1.add(item);
+                    }
+                }
             }
             fileIn.close();
         } catch (FileNotFoundException ex) {
@@ -319,10 +326,10 @@ public class Pg1 extends javax.swing.JFrame {
     }
     
     /**
-     * Funçao que inicializa a popup de Linguas ja existentes
+     * Funçao que inicializa a popup de Materias ja existentes
      */
-    public void setlingua(){
-        String Lingua;
+    public void setmateria(){
+        String Materia;
         ActionListener menuListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
@@ -330,14 +337,21 @@ public class Pg1 extends javax.swing.JFrame {
               }
         };
         try{
-            File arq = new File("Indices/Línguas.txt");
+            File arq = new File("Indices/Matérias.txt");
             Scanner fileIn;
             fileIn = new Scanner(arq);
+            String materia = jTextField2.getText();
             while (fileIn.hasNextLine()){
-                Lingua=fileIn.nextLine();
-                JMenuItem item = new JMenuItem(Lingua);
+                Materia=fileIn.nextLine();
+                JMenuItem item = new JMenuItem(Materia);
                 item.addActionListener(menuListener);
-                jPopupMenu2.add(item);
+                if(materia.isEmpty()){
+                    jPopupMenu2.add(item);
+                }else{
+                    if(Materia.contains(materia)){
+                        jPopupMenu2.add(item);
+                    }
+                }
             }
             fileIn.close();
         } catch (FileNotFoundException ex) {
@@ -350,13 +364,13 @@ public class Pg1 extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(valida()){
             String Assunto =  jTextField1.getText();
-            String Lingua =  jTextField2.getText();
+            String Materia =  jTextField2.getText();
             String Tipo = main.GroupButtonUtils.getSelectedButtonText(buttonGroup2);
             String Dificuldade = main.GroupButtonUtils.getSelectedButtonText(buttonGroup1);
             String Questao =  jTextArea1.getText();
             if(Edit == true){
                 try {
-                    int edited = main.Editar.edit(Assunto, Lingua, Tipo, Dificuldade, Questao, nome);
+                    int edited = main.Editar.edit(Assunto, Materia, Tipo, Dificuldade, Questao, nome);
                     jTextField1.setText(null);
                     jTextArea1.setText(null);
                     jTextField2.setText(null);
@@ -371,7 +385,7 @@ public class Pg1 extends javax.swing.JFrame {
                 }
             }else{
                 try {
-                    int saved = main.Save.salvar(Assunto, Lingua, Tipo, Dificuldade, Questao);
+                    int saved = main.Save.salvar(Assunto, Materia, Tipo, Dificuldade, Questao);
                 } catch (IOException ex) {
                     Logger.getLogger(Pg1.class.getName()).log(Level.SEVERE, null, ex);
                     JOptionPane.showMessageDialog(null, "Erro nas permissões da pasta do programa!(Erro 8)");
@@ -408,8 +422,8 @@ public class Pg1 extends javax.swing.JFrame {
                File file = fileChooser.getSelectedFile();
                nome = file.getName();
                try (Scanner fileIn = new Scanner(file)) {
-                   String lingua = fileIn.nextLine();
-                   jTextField2.setText(lingua);
+                   String materia = fileIn.nextLine();
+                   jTextField2.setText(materia);
                    String Assunto = fileIn.nextLine();
                    jTextField1.setText(Assunto);
                    String Tipo = fileIn.nextLine();
@@ -477,7 +491,7 @@ public class Pg1 extends javax.swing.JFrame {
     /** Código do botão Reparar Banco.Deleta e recria os arquivos de indice*/
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
        int i=1;
-        String Assunto, Lingua, Tipo, Dificuldade, Questao;
+        String Assunto, Materia, Tipo, Dificuldade, Questao;
         try{
             DeletaPastas(new File("Indices"));
             File file = new File("Indices/Assunto");
@@ -485,13 +499,13 @@ public class Pg1 extends javax.swing.JFrame {
             PrintWriter writer;
             if(!file.exists())
                 file.mkdirs();
-            file = new File("Indices/Língua/");
+            file = new File("Indices/Matéria/");
             if(!file.exists())
                 file.mkdir();
             file = new File("Questoes/"+i+".txt");
             while(file.exists()){
                 fileIn = new Scanner(file);
-                Lingua=fileIn.nextLine();
+                Materia=fileIn.nextLine();
                 Assunto=fileIn.nextLine();
                 Tipo=fileIn.nextLine();
                 Dificuldade=fileIn.nextLine();
@@ -505,7 +519,7 @@ public class Pg1 extends javax.swing.JFrame {
                 writer.println(i+".txt");
                 writer.close();
                 fileIn.close();
-                Banco.Lingua.adicionar(Lingua, i+".txt");
+                Banco.Materia.adicionar(Materia, i+".txt");
                 Banco.Assunto.adicionar(Assunto, i+".txt");
                 Banco.Tipo.adicionar(Tipo, i+".txt");
                 Banco.Dificuldade.adicionar(Dificuldade, i+".txt");
@@ -519,22 +533,22 @@ public class Pg1 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-    /**Mostra/Esconde a popup de linguas existentes */
+    /**Mostra/Esconde a popup de materias existentes */
     private void jTextField2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField2MouseClicked
-        if(!linguasetted){
+        if(!materiasetted){
             jPopupMenu2.removeAll();
-            File file = new File("Indices/Línguas.txt");
+            File file = new File("Indices/Matérias.txt");
             if(file.exists())
-                setlingua();
+                setmateria();
             jPopupMenu2.show(this, evt.getX()+100, evt.getY()+55);
-            linguasetted=true;
+            materiasetted=true;
         }else{
-            linguasetted=false;
+            materiasetted=false;
             jPopupMenu2.setVisible(false);
         }
     }//GEN-LAST:event_jTextField2MouseClicked
 
-    /**Esconde a popup de linguas existentes após eventual escolha dentre elas  */
+    /**Esconde a popup de materias existentes após eventual escolha dentre elas  */
     private void jPopupMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPopupMenu2MouseClicked
         jPopupMenu2.setVisible(false);
     }//GEN-LAST:event_jPopupMenu2MouseClicked
@@ -560,16 +574,16 @@ public class Pg1 extends javax.swing.JFrame {
     /**verifica se todos campos estão preenchidos corretamente */
     private Boolean valida(){
         String Assunto =  jTextField1.getText();
-        String Lingua =  jTextField2.getText();
-        if((!Lingua.contains("\\"))&&
-            (!Lingua.contains("/"))&&
-            (!Lingua.contains("\""))&&
-            (!Lingua.contains("*"))&&
-            (!Lingua.contains("?"))&&
-            (!Lingua.contains(":"))&&
-            (!Lingua.contains("<"))&&
-            (!Lingua.contains(">"))&&
-            (!Lingua.contains("|"))){
+        String Materia =  jTextField2.getText();
+        if((!Materia.contains("\\"))&&
+            (!Materia.contains("/"))&&
+            (!Materia.contains("\""))&&
+            (!Materia.contains("*"))&&
+            (!Materia.contains("?"))&&
+            (!Materia.contains(":"))&&
+            (!Materia.contains("<"))&&
+            (!Materia.contains(">"))&&
+            (!Materia.contains("|"))){
             if((!Assunto.contains("\\"))&&
             (!Assunto.contains("/"))&&
             (!Assunto.contains("\""))&&
@@ -593,7 +607,7 @@ public class Pg1 extends javax.swing.JFrame {
                 jTextField1.setText(null);
             }
         }else{
-            JOptionPane.showMessageDialog(null, "Por favor não utilize \\, /, |, \", :, *, ?, < ou > no campo Língua");
+            JOptionPane.showMessageDialog(null, "Por favor não utilize \\, /, |, \", :, *, ?, < ou > no campo Matéria");
                 
             jTextField2.setText(null);
         }
